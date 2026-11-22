@@ -207,9 +207,6 @@ Kasus penghapusan kepala memperlihatkan mengapa pointer `first` perlu diperbarui
 MLL dapat merepresentasikan daftar organisasi dengan jumlah anggota yang dapat berbeda pada tiap organisasi. Operasi wajib berjalan pada data kosong, satu elemen, dan banyak elemen. Program dapat menampilkan seluruh struktur serta memperbarui keanggotaan sebuah negara secara terpisah pada setiap organisasi.
 
 ## Referensi
-
-- Brief kelas *Tugas Besar MK Struktur Data S1 RPL*.
-- Modul kelas *Slide 02 — Singly Linked List*, halaman 71–98, dan *Slide 06 — Multi Linked List*, halaman 9–10 dan 19–31.
 - [ASEAN — The Founding of ASEAN](https://asean.org/the-founding-of-asean/).
 - [United Nations — Growth in United Nations membership](https://www.un.org/en/about-us/growth-in-un-membership). Tahun 1957 untuk Malaysia mengikuti penerimaan Federasi Malaya.
 - [OPEC — Lima negara pendiri OPEC pada 1960](https://www.opec.org/pr-detail/18-14-sep-2024.html).
