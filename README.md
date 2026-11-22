@@ -2,9 +2,11 @@
 
 Tugas besar Struktur Data S1 Rekayasa Perangkat Lunak. Program terminal C++ ini mencatat organisasi antarnegara dan negara anggotanya dengan **Multi Linked List**. Setiap node organisasi mempunyai linked list anggota sendiri.
 
-| Kelompok | Ketua | Anggota |
-| --- | --- | --- |
-| Gw EsEr | Fanan Agfian Mozart | Raihan Yassar Tsaqib |
+| Keterangan | Data |
+| --- | --- |
+| Kelompok | Gw EsEr |
+| Ketua | Fanan Agfian Mozart |
+| Anggota | Raihan Yassar Tsaqib |
 
 [Laporan tugas besar](LAPORAN.md) berisi tujuan, studi kasus, diagram class dan ADT, rujukan kode, hasil pengujian, analisis, serta kesimpulan.
 
