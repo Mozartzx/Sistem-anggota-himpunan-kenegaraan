@@ -4,3 +4,9 @@
 *.exe
 *.o
 *.obj
+
+/bin/
+/obj/
+*.depend
+*.layout
+*_build_log.html

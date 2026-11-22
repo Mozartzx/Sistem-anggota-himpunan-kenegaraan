@@ -10,7 +10,15 @@ Tugas besar Struktur Data S1 Rekayasa Perangkat Lunak. Program terminal C++ ini 
 
 [Laporan tugas besar](LAPORAN.md) berisi tujuan, studi kasus, diagram class dan ADT, rujukan kode, hasil pengujian, analisis, serta kesimpulan.
 
-## Menjalankan program di Windows
+## Menjalankan lewat Code::Blocks
+
+1. Buka [SistemAnggotaHimpunanKenegaraan.cbp](SistemAnggotaHimpunanKenegaraan.cbp) lewat **File → Open**.
+2. Pilih target **Debug**, lalu tekan **F9** (**Build and Run**).
+3. Ketik **9** untuk menampilkan data demo dan **0** untuk keluar.
+
+Target **Release** memulai program dengan daftar kosong. File proyek memakai **GNU GCC Compiler** (MinGW) dan C++17.
+
+## Menjalankan lewat CMake di Windows
 
 Gunakan compiler C++17, CMake, dan MinGW Make. Jika menggunakan MinGW bawaan Code::Blocks di lokasi berikut, jalankan baris pertama untuk menambahkan compiler, CMake, dan runtime MinGW ke PATH sesi PowerShell. Sesuaikan lokasi bila instalasi berbeda.
 

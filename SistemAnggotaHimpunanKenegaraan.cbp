@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+    <FileVersion major="1" minor="6" />
+    <Project>
+        <Option title="Sistem Anggota Himpunan Kenegaraan" />
+        <Option compiler="gcc" />
+        <Build>
+            <Target title="Debug">
+                <Option output="bin/Debug/kenegaraan" prefix_auto="1" extension_auto="1" />
+                <Option working_dir="." />
+                <Option object_output="obj/Debug/" />
+                <Option type="1" />
+                <Option compiler="gcc" />
+                <Option parameters="--demo" />
+                <Compiler>
+                    <Add option="-g" />
+                </Compiler>
+            </Target>
+            <Target title="Release">
+                <Option output="bin/Release/kenegaraan" prefix_auto="1" extension_auto="1" />
+                <Option working_dir="." />
+                <Option object_output="obj/Release/" />
+                <Option type="1" />
+                <Option compiler="gcc" />
+                <Compiler>
+                    <Add option="-O2" />
+                </Compiler>
+            </Target>
+        </Build>
+        <Compiler>
+            <Add option="-Wall" />
+            <Add option="-Wextra" />
+            <Add option="-Wpedantic" />
+            <Add option="-std=c++17" />
+            <Add directory="include" />
+        </Compiler>
+        <Linker>
+            <Add option="-static" />
+        </Linker>
+        <Unit filename="include/aplikasi.hpp" />
+        <Unit filename="include/mll.hpp" />
+        <Unit filename="include/sistem_keanggotaan.hpp" />
+        <Unit filename="src/aplikasi.cpp" />
+        <Unit filename="src/main.cpp" />
+        <Unit filename="src/mll.cpp" />
+        <Unit filename="src/sistem_keanggotaan.cpp" />
+        <Extensions />
+    </Project>
+</CodeBlocks_project_file>
