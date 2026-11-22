@@ -2,35 +2,35 @@
 
 SistemKeanggotaan::~SistemKeanggotaan() {
     while (organisasi.first != nullptr) {
-        mll::AdrOrganisasi parent = mll::deleteParent(
+        AdrOrganisasi parent = deleteParent(
             organisasi, organisasi.first->info.kodeOrganisasi);
-        mll::destroyParent(parent);
+        destroyParent(parent);
     }
 }
 
 bool SistemKeanggotaan::tambahOrganisasi(const Organisasi& info) {
     if (info.kodeOrganisasi.empty() || info.namaOrganisasi.empty() ||
-        mll::findParent(organisasi, info.kodeOrganisasi) != nullptr) {
+        findParent(organisasi, info.kodeOrganisasi) != nullptr) {
         return false;
     }
 
-    mll::AdrOrganisasi parent = mll::createParent(info);
-    mll::insertParent(organisasi, parent);
+    AdrOrganisasi parent = createParent(info);
+    insertParent(organisasi, parent);
     return true;
 }
 
-bool SistemKeanggotaan::hapusOrganisasi(const std::string& kode) {
-    mll::AdrOrganisasi parent = mll::deleteParent(organisasi, kode);
+bool SistemKeanggotaan::hapusOrganisasi(const string& kode) {
+    AdrOrganisasi parent = deleteParent(organisasi, kode);
     if (parent == nullptr) {
         return false;
     }
 
-    mll::destroyParent(parent);
+    destroyParent(parent);
     return true;
 }
 
-bool SistemKeanggotaan::cariOrganisasi(const std::string& kode, Organisasi& hasil) const {
-    const mll::ElmOrganisasi* parent = mll::findParent(organisasi, kode);
+bool SistemKeanggotaan::cariOrganisasi(const string& kode, Organisasi& hasil) const {
+    const ElmOrganisasi* parent = findParent(organisasi, kode);
     if (parent == nullptr) {
         return false;
     }
@@ -38,31 +38,31 @@ bool SistemKeanggotaan::cariOrganisasi(const std::string& kode, Organisasi& hasi
     return true;
 }
 
-void SistemKeanggotaan::tampilkanOrganisasi(std::ostream& out) const {
-    mll::printParent(organisasi, out);
+void SistemKeanggotaan::tampilkanOrganisasi() const {
+    printParent(organisasi);
 }
 
-bool SistemKeanggotaan::tambahAnggota(const std::string& kodeOrganisasi,
+bool SistemKeanggotaan::tambahAnggota(const string& kodeOrganisasi,
                                     const AnggotaNegara& info) {
-    mll::AdrOrganisasi parent = mll::findParent(organisasi, kodeOrganisasi);
+    AdrOrganisasi parent = findParent(organisasi, kodeOrganisasi);
     if (parent == nullptr || info.kodeNegara.empty() || info.namaNegara.empty() ||
-        info.tahunBergabung <= 0 || mll::findChild(*parent, info.kodeNegara) != nullptr) {
+        info.tahunBergabung <= 0 || findChild(*parent, info.kodeNegara) != nullptr) {
         return false;
     }
 
-    mll::AdrAnggota child = mll::createChild(info);
-    mll::insertChild(*parent, child);
+    AdrAnggota child = createChild(info);
+    insertChild(*parent, child);
     return true;
 }
 
-bool SistemKeanggotaan::hapusAnggota(const std::string& kodeOrganisasi,
-                                   const std::string& kodeNegara) {
-    mll::AdrOrganisasi parent = mll::findParent(organisasi, kodeOrganisasi);
+bool SistemKeanggotaan::hapusAnggota(const string& kodeOrganisasi,
+                                   const string& kodeNegara) {
+    AdrOrganisasi parent = findParent(organisasi, kodeOrganisasi);
     if (parent == nullptr) {
         return false;
     }
 
-    mll::AdrAnggota child = mll::deleteChild(*parent, kodeNegara);
+    AdrAnggota child = deleteChild(*parent, kodeNegara);
     if (child == nullptr) {
         return false;
     }
@@ -70,15 +70,15 @@ bool SistemKeanggotaan::hapusAnggota(const std::string& kodeOrganisasi,
     return true;
 }
 
-bool SistemKeanggotaan::cariAnggota(const std::string& kodeOrganisasi,
-                                  const std::string& kodeNegara,
+bool SistemKeanggotaan::cariAnggota(const string& kodeOrganisasi,
+                                  const string& kodeNegara,
                                   AnggotaNegara& hasil) const {
-    const mll::ElmOrganisasi* parent = mll::findParent(organisasi, kodeOrganisasi);
+    const ElmOrganisasi* parent = findParent(organisasi, kodeOrganisasi);
     if (parent == nullptr) {
         return false;
     }
 
-    const mll::ElmAnggota* child = mll::findChild(*parent, kodeNegara);
+    const ElmAnggota* child = findChild(*parent, kodeNegara);
     if (child == nullptr) {
         return false;
     }
@@ -86,17 +86,16 @@ bool SistemKeanggotaan::cariAnggota(const std::string& kodeOrganisasi,
     return true;
 }
 
-bool SistemKeanggotaan::tampilkanAnggota(const std::string& kodeOrganisasi,
-                                       std::ostream& out) const {
-    const mll::ElmOrganisasi* parent = mll::findParent(organisasi, kodeOrganisasi);
+bool SistemKeanggotaan::tampilkanAnggota(const string& kodeOrganisasi) const {
+    const ElmOrganisasi* parent = findParent(organisasi, kodeOrganisasi);
     if (parent == nullptr) {
         return false;
     }
 
-    mll::printChild(*parent, out);
+    printChild(*parent);
     return true;
 }
 
-void SistemKeanggotaan::tampilkanSemua(std::ostream& out) const {
-    mll::printAll(organisasi, out);
+void SistemKeanggotaan::tampilkanSemua() const {
+    printAll(organisasi);
 }

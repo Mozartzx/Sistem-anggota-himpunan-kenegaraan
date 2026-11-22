@@ -34,9 +34,9 @@ classDiagram
     direction TB
 
     class Aplikasi {
-        +jalankan(in, out, demo)
-        -tampilkanMenu(out)
-        -prosesPilihan(pilihan, in, out) bool
+        +jalankan(in, demo)
+        -tampilkanMenu()
+        -prosesPilihan(pilihan, in) bool
         -isiDataContoh()
     }
 
@@ -44,12 +44,12 @@ classDiagram
         +tambahOrganisasi(info) bool
         +hapusOrganisasi(kode) bool
         +cariOrganisasi(kode, hasil) bool
-        +tampilkanOrganisasi(out)
+        +tampilkanOrganisasi()
         +tambahAnggota(kodeOrganisasi, info) bool
         +hapusAnggota(kodeOrganisasi, kodeNegara) bool
         +cariAnggota(kodeOrganisasi, kodeNegara, hasil) bool
-        +tampilkanAnggota(kodeOrganisasi, out) bool
-        +tampilkanSemua(out)
+        +tampilkanAnggota(kodeOrganisasi) bool
+        +tampilkanSemua()
     }
 
     class Organisasi {

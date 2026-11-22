@@ -1,20 +1,19 @@
 #pragma once
 
-#include <iosfwd>
 #include <string>
 
+using namespace std;
+
 struct Organisasi {
-    std::string kodeOrganisasi;
-    std::string namaOrganisasi;
+    string kodeOrganisasi;
+    string namaOrganisasi;
 };
 
 struct AnggotaNegara {
-    std::string kodeNegara;
-    std::string namaNegara;
+    string kodeNegara;
+    string namaNegara;
     int tahunBergabung;
 };
-
-namespace mll {
 
 using InfoOrganisasi = Organisasi;
 using InfoAnggota = AnggotaNegara;
@@ -48,19 +47,17 @@ struct ListOrganisasi {
 // delete melepaskan node dan mengembalikan alamatnya ke pemanggil.
 AdrOrganisasi createParent(const InfoOrganisasi& info);
 void insertParent(ListOrganisasi& list, AdrOrganisasi parent);
-AdrOrganisasi deleteParent(ListOrganisasi& list, const std::string& kode);
-AdrOrganisasi findParent(const ListOrganisasi& list, const std::string& kode);
-void printParent(const ListOrganisasi& list, std::ostream& out);
+AdrOrganisasi deleteParent(ListOrganisasi& list, const string& kode);
+AdrOrganisasi findParent(const ListOrganisasi& list, const string& kode);
+void printParent(const ListOrganisasi& list);
 
 AdrAnggota createChild(const InfoAnggota& info);
 void insertChild(ElmOrganisasi& parent, AdrAnggota child);
-AdrAnggota deleteChild(ElmOrganisasi& parent, const std::string& kode);
-AdrAnggota findChild(const ElmOrganisasi& parent, const std::string& kode);
-void printChild(const ElmOrganisasi& parent, std::ostream& out);
+AdrAnggota deleteChild(ElmOrganisasi& parent, const string& kode);
+AdrAnggota findChild(const ElmOrganisasi& parent, const string& kode);
+void printChild(const ElmOrganisasi& parent);
 
-void printAll(const ListOrganisasi& list, std::ostream& out);
+void printAll(const ListOrganisasi& list);
 
 // Parent harus sudah dilepas dari list. Child miliknya dibebaskan dahulu.
 void destroyParent(AdrOrganisasi parent) noexcept;
-
-} // namespace mll

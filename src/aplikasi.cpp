@@ -1,154 +1,153 @@
 #include "aplikasi.hpp"
 
-#include <istream>
-#include <ostream>
+#include <iostream>
 #include <sstream>
 
 namespace {
 
-bool bacaTeks(std::istream& in, std::ostream& out, const char* label, std::string& hasil) {
+bool bacaTeks(istream& in, const char* label, string& hasil) {
     while (true) {
-        out << label << ": " << std::flush;
-        if (!std::getline(in, hasil)) {
+        cout << label << ": " << flush;
+        if (!getline(in, hasil)) {
             return false;
         }
         const auto awal = hasil.find_first_not_of(" \t\r");
-        if (awal != std::string::npos) {
+        if (awal != string::npos) {
             hasil = hasil.substr(awal, hasil.find_last_not_of(" \t\r") - awal + 1);
             return true;
         }
-        out << "Masukan tidak boleh kosong.\n";
+        cout << "Masukan tidak boleh kosong.\n";
     }
 }
 
-bool bacaAngka(std::istream& in, std::ostream& out, const char* label, int& hasil) {
-    std::string teks;
-    while (bacaTeks(in, out, label, teks)) {
-        std::istringstream parser(teks);
-        std::string sisa;
+bool bacaAngka(istream& in, const char* label, int& hasil) {
+    string teks;
+    while (bacaTeks(in, label, teks)) {
+        istringstream parser(teks);
+        string sisa;
         if ((parser >> hasil) && !(parser >> sisa)) {
             return true;
         }
-        out << "Masukkan bilangan bulat.\n";
+        cout << "Masukkan bilangan bulat.\n";
     }
     return false;
 }
 
 } // namespace
 
-void Aplikasi::jalankan(std::istream& in, std::ostream& out, bool demo) {
-    out << "Sistem Anggota Himpunan Kenegaraan\n";
+void Aplikasi::jalankan(istream& in, bool demo) {
+    cout << "Sistem Anggota Himpunan Kenegaraan\n";
     if (demo) {
         isiDataContoh();
-        out << "Data demo dimuat.\n";
+        cout << "Data demo dimuat.\n";
     }
 
     int pilihan;
     do {
-        tampilkanMenu(out);
-        if (!bacaAngka(in, out, "Pilihan", pilihan) ||
-            !prosesPilihan(pilihan, in, out)) {
+        tampilkanMenu();
+        if (!bacaAngka(in, "Pilihan", pilihan) ||
+            !prosesPilihan(pilihan, in)) {
             break;
         }
     } while (true);
 
-    out << "Program selesai.\n";
+    cout << "Program selesai.\n";
 }
 
-void Aplikasi::tampilkanMenu(std::ostream& out) const {
-    out << "\n1. Tambah organisasi\n"
-        << "2. Hapus organisasi\n"
-        << "3. Cari organisasi\n"
-        << "4. Tampilkan semua organisasi\n"
-        << "5. Tambah anggota ke organisasi\n"
-        << "6. Hapus anggota dari organisasi\n"
-        << "7. Cari anggota dalam organisasi\n"
-        << "8. Tampilkan anggota suatu organisasi\n"
-        << "9. Tampilkan seluruh struktur\n"
-        << "0. Keluar\n";
+void Aplikasi::tampilkanMenu() const {
+    cout << "\n1. Tambah organisasi\n"
+         << "2. Hapus organisasi\n"
+         << "3. Cari organisasi\n"
+         << "4. Tampilkan semua organisasi\n"
+         << "5. Tambah anggota ke organisasi\n"
+         << "6. Hapus anggota dari organisasi\n"
+         << "7. Cari anggota dalam organisasi\n"
+         << "8. Tampilkan anggota suatu organisasi\n"
+         << "9. Tampilkan seluruh struktur\n"
+         << "0. Keluar\n";
 }
 
-bool Aplikasi::prosesPilihan(int pilihan, std::istream& in, std::ostream& out) {
+bool Aplikasi::prosesPilihan(int pilihan, istream& in) {
     if (pilihan == 0) {
         return false;
     }
     if (pilihan == 4) {
-        sistem.tampilkanOrganisasi(out);
+        sistem.tampilkanOrganisasi();
         return true;
     }
     if (pilihan == 9) {
-        sistem.tampilkanSemua(out);
+        sistem.tampilkanSemua();
         return true;
     }
     if (pilihan < 1 || pilihan > 9) {
-        out << "Pilihan tidak tersedia.\n";
+        cout << "Pilihan tidak tersedia.\n";
         return true;
     }
 
     Organisasi organisasi;
-    if (!bacaTeks(in, out, "Kode organisasi", organisasi.kodeOrganisasi)) {
+    if (!bacaTeks(in, "Kode organisasi", organisasi.kodeOrganisasi)) {
         return false;
     }
-    const std::string kode = organisasi.kodeOrganisasi;
+    const string kode = organisasi.kodeOrganisasi;
 
     if (pilihan == 1) {
-        if (!bacaTeks(in, out, "Nama organisasi", organisasi.namaOrganisasi)) {
+        if (!bacaTeks(in, "Nama organisasi", organisasi.namaOrganisasi)) {
             return false;
         }
-        out << (sistem.tambahOrganisasi(organisasi)
+        cout << (sistem.tambahOrganisasi(organisasi)
                     ? "Organisasi ditambahkan.\n"
                     : "Kode organisasi sudah terdaftar.\n");
         return true;
     }
     if (!sistem.cariOrganisasi(kode, organisasi)) {
-        out << "Organisasi tidak ditemukan.\n";
+        cout << "Organisasi tidak ditemukan.\n";
         return true;
     }
     if (pilihan == 8) {
-        out << '[' << kode << "] " << organisasi.namaOrganisasi << '\n';
-        sistem.tampilkanAnggota(kode, out);
+        cout << '[' << kode << "] " << organisasi.namaOrganisasi << '\n';
+        sistem.tampilkanAnggota(kode);
         return true;
     }
     if (pilihan == 2) {
         sistem.hapusOrganisasi(kode);
-        out << "Organisasi dan seluruh anggotanya dihapus.\n";
+        cout << "Organisasi dan seluruh anggotanya dihapus.\n";
         return true;
     }
     if (pilihan == 3) {
-        out << "Organisasi ditemukan: [" << kode << "] " << organisasi.namaOrganisasi << '\n';
+        cout << "Organisasi ditemukan: [" << kode << "] " << organisasi.namaOrganisasi << '\n';
         return true;
     }
 
     AnggotaNegara anggota{};
-    if (!bacaTeks(in, out, "Kode negara", anggota.kodeNegara)) {
+    if (!bacaTeks(in, "Kode negara", anggota.kodeNegara)) {
         return false;
     }
     if (pilihan == 5) {
-        if (!bacaTeks(in, out, "Nama negara", anggota.namaNegara) ||
-            !bacaAngka(in, out, "Tahun bergabung", anggota.tahunBergabung)) {
+        if (!bacaTeks(in, "Nama negara", anggota.namaNegara) ||
+            !bacaAngka(in, "Tahun bergabung", anggota.tahunBergabung)) {
             return false;
         }
         if (anggota.tahunBergabung <= 0) {
-            out << "Tahun bergabung harus lebih dari nol.\n";
+            cout << "Tahun bergabung harus lebih dari nol.\n";
         } else {
-            out << (sistem.tambahAnggota(kode, anggota)
+            cout << (sistem.tambahAnggota(kode, anggota)
                         ? "Anggota ditambahkan.\n"
                         : "Negara sudah terdaftar pada organisasi ini.\n");
         }
         return true;
     }
     if (pilihan == 6) {
-        out << (sistem.hapusAnggota(kode, anggota.kodeNegara)
+        cout << (sistem.hapusAnggota(kode, anggota.kodeNegara)
                     ? "Anggota dihapus.\n"
                     : "Anggota tidak ditemukan.\n");
         return true;
     }
 
     if (sistem.cariAnggota(kode, anggota.kodeNegara, anggota)) {
-        out << "Anggota ditemukan: [" << anggota.kodeNegara << "] " << anggota.namaNegara
-            << " | Tahun bergabung: " << anggota.tahunBergabung << '\n';
+        cout << "Anggota ditemukan: [" << anggota.kodeNegara << "] " << anggota.namaNegara
+             << " | Tahun bergabung: " << anggota.tahunBergabung << '\n';
     } else {
-        out << "Anggota tidak ditemukan.\n";
+        cout << "Anggota tidak ditemukan.\n";
     }
     return true;
 }

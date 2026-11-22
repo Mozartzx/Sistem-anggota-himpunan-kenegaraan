@@ -2,13 +2,15 @@
 
 #include "sistem_keanggotaan.hpp"
 
+#include <iosfwd>
+
 class Aplikasi {
 public:
-    void jalankan(std::istream& in, std::ostream& out, bool demo);
+void jalankan(istream& in, bool demo);
 
 private:
-    void tampilkanMenu(std::ostream& out) const;
-    bool prosesPilihan(int pilihan, std::istream& in, std::ostream& out);
+    void tampilkanMenu() const;
+    bool prosesPilihan(int pilihan, istream& in);
     void isiDataContoh();
 
     SistemKeanggotaan sistem;

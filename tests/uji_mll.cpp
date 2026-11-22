@@ -8,18 +8,17 @@ namespace {
 
 void pastikan(bool kondisi, const char* pesan) {
     if (!kondisi) {
-        throw std::runtime_error(pesan);
+        throw runtime_error(pesan);
     }
 }
 
-void ujiParent() {
+void ujiParent(ostringstream& output) {
     SistemKeanggotaan sistem;
     Organisasi hasil;
-    std::ostringstream output;
 
     pastikan(!sistem.cariOrganisasi("A", hasil), "Pencarian pada list parent kosong");
     pastikan(!sistem.hapusOrganisasi("A"), "Penghapusan pada list parent kosong");
-    sistem.tampilkanOrganisasi(output);
+    sistem.tampilkanOrganisasi();
     pastikan(output.str() == "Belum ada organisasi.\n", "Cetak list parent kosong");
 
     pastikan(!sistem.tambahOrganisasi({"", "Organisasi A"}), "Tolak kode parent kosong");
@@ -33,7 +32,7 @@ void ujiParent() {
     pastikan(!sistem.cariOrganisasi("Z", hasil), "Parent yang tidak ada tidak ditemukan");
 
     output.str("");
-    sistem.tampilkanOrganisasi(output);
+    sistem.tampilkanOrganisasi();
     pastikan(output.str() == "[A] Organisasi A\n[B] Organisasi B\n[C] Organisasi C\n[D] Organisasi D\n",
              "Traversal parent sesuai urutan penambahan");
 
@@ -45,22 +44,21 @@ void ujiParent() {
     pastikan(sistem.hapusOrganisasi("C"), "Hapus satu-satunya parent tersisa");
 
     output.str("");
-    sistem.tampilkanSemua(output);
+    sistem.tampilkanSemua();
     pastikan(output.str() == "Belum ada organisasi.\n", "List utama kembali kosong");
 }
 
-void ujiChild() {
+void ujiChild(ostringstream& output) {
     SistemKeanggotaan sistem;
     AnggotaNegara hasil{};
-    std::ostringstream output;
 
     pastikan(sistem.tambahOrganisasi({"A", "Organisasi A"}), "Siapkan parent A");
     pastikan(!sistem.tambahAnggota("Z", {"X", "Negara X", 2000}), "Tolak parent yang tidak ada");
-    pastikan(!sistem.tampilkanAnggota("Z", output), "Cetak child parent yang tidak ada");
+    pastikan(!sistem.tampilkanAnggota("Z"), "Cetak child parent yang tidak ada");
     pastikan(!sistem.tambahAnggota("A", {"X", "Negara X", 0}), "Tolak tahun nol");
     pastikan(!sistem.hapusAnggota("A", "X"), "Hapus pada list anak kosong");
     pastikan(!sistem.cariAnggota("A", "X", hasil), "Cari pada list anak kosong");
-    pastikan(sistem.tampilkanAnggota("A", output) && output.str() == "  Belum ada anggota.\n",
+    pastikan(sistem.tampilkanAnggota("A") && output.str() == "  Belum ada anggota.\n",
              "Cetak list anak kosong");
 
     pastikan(sistem.tambahAnggota("A", {"X", "Negara X", 2000}), "Tambah anak pertama");
@@ -80,14 +78,13 @@ void ujiChild() {
     pastikan(sistem.hapusAnggota("A", "Z"), "Hapus satu-satunya anak tersisa");
 
     output.str("");
-    pastikan(sistem.tampilkanAnggota("A", output) && output.str() == "  Belum ada anggota.\n",
+    pastikan(sistem.tampilkanAnggota("A") && output.str() == "  Belum ada anggota.\n",
              "List anak kembali kosong");
 }
 
-void ujiHubungan() {
+void ujiHubungan(ostringstream& output) {
     SistemKeanggotaan sistem;
     AnggotaNegara hasil{};
-    std::ostringstream output;
 
     pastikan(sistem.tambahOrganisasi({"A", "Organisasi A"}), "Siapkan parent A");
     pastikan(sistem.tambahOrganisasi({"B", "Organisasi B"}), "Siapkan parent B");
@@ -95,7 +92,7 @@ void ujiHubungan() {
     pastikan(sistem.tambahAnggota("A", {"Y", "Negara Y", 2001}), "Negara Y masuk A");
     pastikan(sistem.tambahAnggota("B", {"X", "Negara X", 2002}), "Negara X juga boleh masuk B");
 
-    sistem.tampilkanSemua(output);
+    sistem.tampilkanSemua();
     pastikan(output.str() ==
                  "[A] Organisasi A\n"
                  "  - [X] Negara X | Tahun bergabung: 2000\n"
@@ -115,15 +112,24 @@ void ujiHubungan() {
 } // namespace
 
 int main() {
+    ostringstream output;
+    // Tampung cetakan selama pengujian, lalu kembalikan cout ke terminal.
+    streambuf* bufferAsli = cout.rdbuf(output.rdbuf());
+
     try {
-        ujiParent();
-        std::cout << "LULUS: operasi parent dan urutan traversal\n";
-        ujiChild();
-        std::cout << "LULUS: operasi child dan kasus batas\n";
-        ujiHubungan();
-        std::cout << "LULUS: pemisahan keanggotaan dan cetak seluruh struktur\n";
-    } catch (const std::exception& error) {
-        std::cerr << "GAGAL: " << error.what() << '\n';
+        ujiParent(output);
+        output.str("");
+        ujiChild(output);
+        output.str("");
+        ujiHubungan(output);
+    } catch (const exception& error) {
+        cout.rdbuf(bufferAsli);
+        cout << "GAGAL: " << error.what() << '\n';
         return 1;
     }
+
+    cout.rdbuf(bufferAsli);
+    cout << "LULUS: operasi parent dan urutan traversal\n";
+    cout << "LULUS: operasi child dan kasus batas\n";
+    cout << "LULUS: pemisahan keanggotaan dan cetak seluruh struktur\n";
 }

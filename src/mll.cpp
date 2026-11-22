@@ -1,8 +1,6 @@
 #include "mll.hpp"
 
-#include <ostream>
-
-namespace mll {
+#include <iostream>
 
 AdrOrganisasi createParent(const InfoOrganisasi& info) {
     return new ElmOrganisasi{info, nullptr, {}};
@@ -21,7 +19,7 @@ void insertParent(ListOrganisasi& list, AdrOrganisasi parent) {
     terakhir->next = parent;
 }
 
-AdrOrganisasi deleteParent(ListOrganisasi& list, const std::string& kode) {
+AdrOrganisasi deleteParent(ListOrganisasi& list, const string& kode) {
     AdrOrganisasi sebelum = nullptr;
     AdrOrganisasi saatIni = list.first;
     while (saatIni != nullptr && saatIni->info.kodeOrganisasi != kode) {
@@ -41,7 +39,7 @@ AdrOrganisasi deleteParent(ListOrganisasi& list, const std::string& kode) {
     return saatIni;
 }
 
-AdrOrganisasi findParent(const ListOrganisasi& list, const std::string& kode) {
+AdrOrganisasi findParent(const ListOrganisasi& list, const string& kode) {
     AdrOrganisasi parent = list.first;
     while (parent != nullptr && parent->info.kodeOrganisasi != kode) {
         parent = parent->next;
@@ -49,15 +47,15 @@ AdrOrganisasi findParent(const ListOrganisasi& list, const std::string& kode) {
     return parent;
 }
 
-void printParent(const ListOrganisasi& list, std::ostream& out) {
+void printParent(const ListOrganisasi& list) {
     if (list.first == nullptr) {
-        out << "Belum ada organisasi.\n";
+        cout << "Belum ada organisasi.\n";
         return;
     }
 
     for (const ElmOrganisasi* parent = list.first; parent != nullptr; parent = parent->next) {
-        out << '[' << parent->info.kodeOrganisasi << "] "
-            << parent->info.namaOrganisasi << '\n';
+        cout << '[' << parent->info.kodeOrganisasi << "] "
+             << parent->info.namaOrganisasi << '\n';
     }
 }
 
@@ -78,7 +76,7 @@ void insertChild(ElmOrganisasi& parent, AdrAnggota child) {
     terakhir->next = child;
 }
 
-AdrAnggota deleteChild(ElmOrganisasi& parent, const std::string& kode) {
+AdrAnggota deleteChild(ElmOrganisasi& parent, const string& kode) {
     AdrAnggota sebelum = nullptr;
     AdrAnggota saatIni = parent.anggota.first;
     while (saatIni != nullptr && saatIni->info.kodeNegara != kode) {
@@ -98,7 +96,7 @@ AdrAnggota deleteChild(ElmOrganisasi& parent, const std::string& kode) {
     return saatIni;
 }
 
-AdrAnggota findChild(const ElmOrganisasi& parent, const std::string& kode) {
+AdrAnggota findChild(const ElmOrganisasi& parent, const string& kode) {
     AdrAnggota child = parent.anggota.first;
     while (child != nullptr && child->info.kodeNegara != kode) {
         child = child->next;
@@ -106,28 +104,28 @@ AdrAnggota findChild(const ElmOrganisasi& parent, const std::string& kode) {
     return child;
 }
 
-void printChild(const ElmOrganisasi& parent, std::ostream& out) {
+void printChild(const ElmOrganisasi& parent) {
     if (parent.anggota.first == nullptr) {
-        out << "  Belum ada anggota.\n";
+        cout << "  Belum ada anggota.\n";
         return;
     }
 
     for (const ElmAnggota* child = parent.anggota.first; child != nullptr; child = child->next) {
-        out << "  - [" << child->info.kodeNegara << "] " << child->info.namaNegara
-            << " | Tahun bergabung: " << child->info.tahunBergabung << '\n';
+        cout << "  - [" << child->info.kodeNegara << "] " << child->info.namaNegara
+             << " | Tahun bergabung: " << child->info.tahunBergabung << '\n';
     }
 }
 
-void printAll(const ListOrganisasi& list, std::ostream& out) {
+void printAll(const ListOrganisasi& list) {
     if (list.first == nullptr) {
-        printParent(list, out);
+        printParent(list);
         return;
     }
 
     for (const ElmOrganisasi* parent = list.first; parent != nullptr; parent = parent->next) {
-        out << '[' << parent->info.kodeOrganisasi << "] "
-            << parent->info.namaOrganisasi << '\n';
-        printChild(*parent, out);
+        cout << '[' << parent->info.kodeOrganisasi << "] "
+             << parent->info.namaOrganisasi << '\n';
+        printChild(*parent);
     }
 }
 
@@ -140,5 +138,3 @@ void destroyParent(AdrOrganisasi parent) noexcept {
     }
     delete parent;
 }
-
-} // namespace mll

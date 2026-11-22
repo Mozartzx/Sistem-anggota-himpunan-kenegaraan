@@ -11,17 +11,17 @@ public:
     SistemKeanggotaan& operator=(const SistemKeanggotaan&) = delete;
 
     bool tambahOrganisasi(const Organisasi& info);
-    bool hapusOrganisasi(const std::string& kode);
-    bool cariOrganisasi(const std::string& kode, Organisasi& hasil) const;
-    void tampilkanOrganisasi(std::ostream& out) const;
+    bool hapusOrganisasi(const string& kode);
+    bool cariOrganisasi(const string& kode, Organisasi& hasil) const;
+    void tampilkanOrganisasi() const;
 
-    bool tambahAnggota(const std::string& kodeOrganisasi, const AnggotaNegara& info);
-    bool hapusAnggota(const std::string& kodeOrganisasi, const std::string& kodeNegara);
-    bool cariAnggota(const std::string& kodeOrganisasi, const std::string& kodeNegara,
+    bool tambahAnggota(const string& kodeOrganisasi, const AnggotaNegara& info);
+    bool hapusAnggota(const string& kodeOrganisasi, const string& kodeNegara);
+    bool cariAnggota(const string& kodeOrganisasi, const string& kodeNegara,
                      AnggotaNegara& hasil) const;
-    bool tampilkanAnggota(const std::string& kodeOrganisasi, std::ostream& out) const;
-    void tampilkanSemua(std::ostream& out) const;
+    bool tampilkanAnggota(const string& kodeOrganisasi) const;
+    void tampilkanSemua() const;
 
 private:
-    mll::ListOrganisasi organisasi;
+    ListOrganisasi organisasi;
 };
