@@ -43,8 +43,6 @@ struct ListOrganisasi {
     AdrOrganisasi first = nullptr;
 };
 
-// insert menerima node baru yang belum terhubung ke list mana pun.
-// delete melepaskan node dan mengembalikan alamatnya ke pemanggil.
 AdrOrganisasi createParent(const InfoOrganisasi& info);
 void insertParent(ListOrganisasi& list, AdrOrganisasi parent);
 AdrOrganisasi deleteParent(ListOrganisasi& list, const string& kode);
@@ -59,5 +57,4 @@ void printChild(const ElmOrganisasi& parent);
 
 void printAll(const ListOrganisasi& list);
 
-// Parent harus sudah dilepas dari list. Child miliknya dibebaskan dahulu.
 void destroyParent(AdrOrganisasi parent) noexcept;

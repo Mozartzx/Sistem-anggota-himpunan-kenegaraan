@@ -109,11 +109,10 @@ void ujiHubungan(ostringstream& output) {
     pastikan(sistem.cariAnggota("B", "X", hasil), "B beserta anggotanya tetap utuh");
 }
 
-} // namespace
+}
 
 int main() {
     ostringstream output;
-    // Tampung cetakan selama pengujian, lalu kembalikan cout ke terminal.
     streambuf* bufferAsli = cout.rdbuf(output.rdbuf());
 
     try {

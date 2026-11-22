@@ -33,7 +33,7 @@ bool bacaAngka(istream& in, const char* label, int& hasil) {
     return false;
 }
 
-} // namespace
+}
 
 void Aplikasi::jalankan(istream& in, bool demo) {
     cout << "Sistem Anggota Himpunan Kenegaraan\n";
