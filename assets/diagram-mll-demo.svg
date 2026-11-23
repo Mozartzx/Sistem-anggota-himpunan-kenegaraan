@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="752" height="402" viewBox="0 0 752 402" role="img" aria-labelledby="title desc">
+  <title id="title">Rangkaian node Multi Linked List pada data demo</title>
+  <desc id="desc">FIRST menunjuk ASEAN. Pointer next menghubungkan ASEAN, PBB, lalu OPEC. Setiap organisasi menunjuk lima node anggota yang tersusun ke bawah. Garis miring menandai pointer kosong atau NIL.</desc>
+  <defs>
+    <marker id="blue" viewBox="0 0 9 8" refX="8" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0L9 4L0 8z" fill="#3464b6"/>
+    </marker>
+    <marker id="orange" viewBox="0 0 9 8" refX="8" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0L9 4L0 8z" fill="#dc8039"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill: #fff; stroke: #4c4c4c; stroke-width: .72; }
+    .line { stroke: #4c4c4c; stroke-width: .72; }
+    text { font-family: Arial, sans-serif; fill: #151515; }
+    .primary { font-size: 10px; }
+    .small { font-size: 8px; }
+    .pointer { fill: none; stroke-width: .83; }
+    .blue { stroke: #3464b6; }
+    .orange { stroke: #dc8039; }
+  </style>
+  <rect width="752" height="402" fill="#fff"/>
+  <text x="24" y="23" text-anchor="start" class="small">FIRST</text>
+  <text x="42" y="97" text-anchor="start" class="primary">L:</text>
+  <rect x="54" y="73" width="151" height="40" class="box parent"/>
+<path d="M152 73v40" class="line"/>
+<path d="M174 73v40" class="line"/>
+  <text x="103" y="86" text-anchor="middle" class="primary">ASEAN</text>
+  <text x="103" y="98" text-anchor="middle" class="small">Perhimpunan Bangsa-</text>
+  <text x="103" y="108" text-anchor="middle" class="small">Bangsa Asia Tenggara</text>
+  <rect x="54" y="143" width="140" height="34" class="box child"/>
+<path d="M167 143v34" class="line"/>
+  <text x="110.5" y="156" text-anchor="middle" class="primary">Indonesia</text>
+  <text x="110.5" y="168" text-anchor="middle" class="small">IDN · 1967</text>
+  <rect x="54" y="194" width="140" height="34" class="box child"/>
+<path d="M167 194v34" class="line"/>
+  <text x="110.5" y="207" text-anchor="middle" class="primary">Malaysia</text>
+  <text x="110.5" y="219" text-anchor="middle" class="small">MYS · 1967</text>
+  <rect x="54" y="245" width="140" height="34" class="box child"/>
+<path d="M167 245v34" class="line"/>
+  <text x="110.5" y="258" text-anchor="middle" class="primary">Filipina</text>
+  <text x="110.5" y="270" text-anchor="middle" class="small">PHL · 1967</text>
+  <rect x="54" y="296" width="140" height="34" class="box child"/>
+<path d="M167 296v34" class="line"/>
+  <text x="110.5" y="309" text-anchor="middle" class="primary">Singapura</text>
+  <text x="110.5" y="321" text-anchor="middle" class="small">SGP · 1967</text>
+  <rect x="54" y="347" width="140" height="34" class="box child"/>
+<path d="M167 347v34" class="line"/>
+  <text x="110.5" y="360" text-anchor="middle" class="primary">Thailand</text>
+  <text x="110.5" y="372" text-anchor="middle" class="small">THA · 1967</text>
+  <rect x="300" y="73" width="151" height="40" class="box parent"/>
+<path d="M398 73v40" class="line"/>
+<path d="M420 73v40" class="line"/>
+  <text x="349" y="86" text-anchor="middle" class="primary">PBB</text>
+  <text x="349" y="98" text-anchor="middle" class="small">Perserikatan</text>
+  <text x="349" y="108" text-anchor="middle" class="small">Bangsa-Bangsa</text>
+  <rect x="300" y="143" width="140" height="34" class="box child"/>
+<path d="M413 143v34" class="line"/>
+  <text x="356.5" y="156" text-anchor="middle" class="primary">Indonesia</text>
+  <text x="356.5" y="168" text-anchor="middle" class="small">IDN · 1950</text>
+  <rect x="300" y="194" width="140" height="34" class="box child"/>
+<path d="M413 194v34" class="line"/>
+  <text x="356.5" y="207" text-anchor="middle" class="primary">Malaysia</text>
+  <text x="356.5" y="219" text-anchor="middle" class="small">MYS · 1957</text>
+  <rect x="300" y="245" width="140" height="34" class="box child"/>
+<path d="M413 245v34" class="line"/>
+  <text x="356.5" y="258" text-anchor="middle" class="primary">Jepang</text>
+  <text x="356.5" y="270" text-anchor="middle" class="small">JPN · 1956</text>
+  <rect x="300" y="296" width="140" height="34" class="box child"/>
+<path d="M413 296v34" class="line"/>
+  <text x="356.5" y="309" text-anchor="middle" class="primary">Kanada</text>
+  <text x="356.5" y="321" text-anchor="middle" class="small">CAN · 1945</text>
+  <rect x="300" y="347" width="140" height="34" class="box child"/>
+<path d="M413 347v34" class="line"/>
+  <text x="356.5" y="360" text-anchor="middle" class="primary">Australia</text>
+  <text x="356.5" y="372" text-anchor="middle" class="small">AUS · 1945</text>
+  <rect x="546" y="73" width="151" height="40" class="box parent"/>
+<path d="M644 73v40" class="line"/>
+<path d="M666 73v40" class="line"/>
+  <text x="595" y="86" text-anchor="middle" class="primary">OPEC</text>
+  <text x="595" y="98" text-anchor="middle" class="small">Organisasi Negara-Negara</text>
+  <text x="595" y="108" text-anchor="middle" class="small">Pengekspor Minyak</text>
+  <rect x="546" y="143" width="140" height="34" class="box child"/>
+<path d="M659 143v34" class="line"/>
+  <text x="602.5" y="156" text-anchor="middle" class="primary">Iran</text>
+  <text x="602.5" y="168" text-anchor="middle" class="small">IRN · 1960</text>
+  <rect x="546" y="194" width="140" height="34" class="box child"/>
+<path d="M659 194v34" class="line"/>
+  <text x="602.5" y="207" text-anchor="middle" class="primary">Irak</text>
+  <text x="602.5" y="219" text-anchor="middle" class="small">IRQ · 1960</text>
+  <rect x="546" y="245" width="140" height="34" class="box child"/>
+<path d="M659 245v34" class="line"/>
+  <text x="602.5" y="258" text-anchor="middle" class="primary">Kuwait</text>
+  <text x="602.5" y="270" text-anchor="middle" class="small">KWT · 1960</text>
+  <rect x="546" y="296" width="140" height="34" class="box child"/>
+<path d="M659 296v34" class="line"/>
+  <text x="602.5" y="309" text-anchor="middle" class="primary">Arab Saudi</text>
+  <text x="602.5" y="321" text-anchor="middle" class="small">SAU · 1960</text>
+  <rect x="546" y="347" width="140" height="34" class="box child"/>
+<path d="M659 347v34" class="line"/>
+  <text x="602.5" y="360" text-anchor="middle" class="primary">Venezuela</text>
+  <text x="602.5" y="372" text-anchor="middle" class="small">VEN · 1960</text>
+  <path d="M60 27L103 71" class="pointer blue" marker-end="url(#blue)"/>
+  <path d="M186 85H298" class="pointer blue" marker-end="url(#blue)"/>
+  <path d="M163 81V142" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M180.5 168V192" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M180.5 219V243" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M180.5 270V294" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M180.5 321V345" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M167 347l27 34" class="pointer orange nil"/>
+  <path d="M432 85H544" class="pointer blue" marker-end="url(#blue)"/>
+  <path d="M409 81V142" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M426.5 168V192" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M426.5 219V243" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M426.5 270V294" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M426.5 321V345" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M413 347l27 34" class="pointer orange nil"/>
+  <path d="M666 73l31 40" class="pointer blue nil"/>
+  <path d="M655 81V142" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M672.5 168V192" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M672.5 219V243" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M672.5 270V294" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M672.5 321V345" class="pointer orange" marker-end="url(#orange)"/>
+  <path d="M659 347l27 34" class="pointer orange nil"/>
+</svg>

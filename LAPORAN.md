@@ -101,26 +101,11 @@ classDiagram
 
 `AdrOrganisasi` menunjuk ke `ElmOrganisasi` dan `AdrAnggota` menunjuk ke `ElmAnggota`. Pada C++, `NIL` ditulis sebagai `nullptr`. Saat list kosong, `first` bernilai `NIL`. Pada node terakhir, `next` bernilai `NIL`.
 
-Cuplikan struktur dalam mode demo. Indonesia di ASEAN dan Indonesia di PBB disimpan pada alamat yang berbeda.
+### Struktur pointer pada data demo
 
-```mermaid
-flowchart LR
-    L["ListOrganisasi.first"] --> A["ASEAN"]
-    A -->|next| P["PBB"]
-    P -->|next| O["OPEC"]
-    O -->|next| N["NIL"]
+![Diagram MLL dengan tiga node organisasi, lima node anggota per organisasi, dan NIL di akhir setiap list](assets/diagram-mll-demo.svg)
 
-    A -->|anggota.first| AI["Indonesia · 1967"]
-    AI -->|next| AM["Malaysia · 1967"]
-    AM -->|next| AR["Anggota ASEAN berikutnya"]
-
-    P -->|anggota.first| PI["Indonesia · 1950"]
-    PI -->|next| PM["Malaysia · 1957"]
-    PM -->|next| PR["Anggota PBB berikutnya"]
-
-    O -->|anggota.first| OI["Iran · 1960"]
-    OI -->|next| OR["Anggota OPEC berikutnya"]
-```
+`FIRST` adalah `ListOrganisasi.first`. Panah biru menghubungkan node organisasi melalui `next`. Panah jingga turun dari `anggota.first` ke anggota pertama, lalu mengikuti `next` pada list anggota. Garis miring pada kotak pointer berarti `NIL`.
 
 ## Implementasi C++
 
